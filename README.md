@@ -1,4 +1,5 @@
-# Welcome to the JDK!
+# Haldir-JDK
+Haldir JDK provides some performance optimization and extension functions for Open JDK
 
 For build instructions please see the
 [online documentation](https://openjdk.java.net/groups/build/doc/building.html),
