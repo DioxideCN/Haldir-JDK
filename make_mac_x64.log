@@ -1,0 +1,57 @@
+Building target 'default (exploded-image)' in configuration 'macosx-aarch64-serverANDclient-fastdebug'
+Optimizing the exploded image
+# To suppress the following error report, specify this argument
+# after -XX: or in .hotspotrc:  SuppressErrorAt=/c1_LIR.hpp:416
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (/Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/src/hotspot/share/c1/c1_LIR.hpp:416), pid=10486, tid=23299
+#  assert(is_single_cpu() && !is_virtual()) failed: type check
+#
+# JRE version: OpenJDK Runtime Environment (17.0.7) (fastdebug build 17.0.70) (Haldir JDK.Haldir-JDK)
+# Java VM: OpenJDK 64-Bit Server VM (fastdebug 17.0.70) (Haldir JDK.Haldir-JDK, mixed mode, tiered, compressed oops, compressed class ptrs, g1 gc, bsd-aarch64)
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# An error report file with more information is saved as:
+# /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/make/hs_err_pid10486.log
+#
+# Compiler replay data is saved as:
+# /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/make/replay_pid10486.log
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+/bin/bash: line 1: 10486 Abort trap: 6           /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/build/macosx-aarch64-serverANDclient-fastdebug/jdk/bin/java -Xms64M -Xmx1600M -cp /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/build/macosx-aarch64-serverANDclient-fastdebug/buildtools/tools_jigsaw_classes --add-exports java.base/jdk.internal.module=ALL-UNNAMED build.tools.jigsaw.AddPackagesAttribute /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/build/macosx-aarch64-serverANDclient-fastdebug/jdk > >(/usr/bin/tee -a /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/build/macosx-aarch64-serverANDclient-fastdebug/jdk/_optimize_image_exec.log) 2> >(/usr/bin/tee -a /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/build/macosx-aarch64-serverANDclient-fastdebug/jdk/_optimize_image_exec.log >&2)
+gmake[3]: *** [ExplodedImageOptimize.gmk:41: /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/build/macosx-aarch64-serverANDclient-fastdebug/jdk/_optimize_image_exec.marker] Error 134
+gmake[2]: *** [make/Main.gmk:437: exploded-image-optimize] Error 2
+
+ERROR: Build failed for target 'default (exploded-image)' in configuration 'macosx-aarch64-serverANDclient-fastdebug' (exit code 2) 
+
+=== Output from failing command(s) repeated here ===
+* For target jdk__optimize_image_exec:
+# To suppress the following error report, specify this argument
+# after -XX: or in .hotspotrc:  SuppressErrorAt=/c1_LIR.hpp:416
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (/Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/src/hotspot/share/c1/c1_LIR.hpp:416), pid=10486, tid=23299
+#  assert(is_single_cpu() && !is_virtual()) failed: type check
+#
+# JRE version: OpenJDK Runtime Environment (17.0.7) (fastdebug build 17.0.70) (Haldir JDK.Haldir-JDK)
+# Java VM: OpenJDK 64-Bit Server VM (fastdebug 17.0.70) (Haldir JDK.Haldir-JDK, mixed mode, tiered, compressed oops, compressed class ptrs, g1 gc, bsd-aarch64)
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# An error report file with more information is saved as:
+# /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/make/hs_err_pid10486.log
+#
+   ... (rest of output omitted)
+
+* All command lines available in /Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/build/macosx-aarch64-serverANDclient-fastdebug/make-support/failure-logs.
+=== End of repeated output ===
+
+No indication of failed target found.
+Hint: Try searching the build log for '] Error'.
+Hint: See doc/building.html#troubleshooting for assistance.
+
+make[1]: *** [/Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/make/Init.gmk:315: main] Error 2
+make: *** [/Users/dioxide/Environment/jdk-22.10.0/Haldir-JDK/make/Init.gmk:186: default] Error 2
