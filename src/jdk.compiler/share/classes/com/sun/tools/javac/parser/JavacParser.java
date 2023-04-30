@@ -2927,12 +2927,34 @@ public class JavacParser implements Parser {
             return t;
         }
         case RETRIAL: {
-            // here we do retrial logical
-            nextToken(); // get `{` then resolve
-            JCBlock body = block(); // get `{}` block
-            ListBuffer<JCCatch> catchers = new ListBuffer<>();
-            JCBlock finalizer = null;
-            return F.at(pos).Try(body, catchers.toList(), finalizer);
+            nextToken(); // get the first '('
+            accept(LPAREN); // get condition block `()`
+            JCExpression condition = parseExpression();
+            accept(RPAREN);
+
+            // Get the second '(' and parse the integer value 'n'
+            accept(LPAREN);
+            JCExpression timesExpr = parseExpression();
+            accept(RPAREN);
+
+            // Parse the body block
+            JCBlock body = block();
+
+            // Create a loop counter variable
+            Name loopCounterName = names.fromString("$retrial_counter");
+            JCVariableDecl loopCounter = F.VarDef(F.Modifiers(0), loopCounterName, F.TypeIdent(TypeTag.INT), F.Literal(0));
+
+            // Create the loop condition: condition && $retrial_counter < times
+            JCExpression loopCondition = F.Binary(JCTree.Tag.AND, condition, F.Binary(JCTree.Tag.LT, F.Ident(loopCounterName), timesExpr));
+
+            // Create the increment statement: $retrial_counter++
+            JCExpressionStatement incrementCounter = F.Exec(F.Unary(JCTree.Tag.POSTINC, F.Ident(loopCounterName)));
+
+            // Assemble the while loop
+            JCStatement whileLoop = F.at(pos).WhileLoop(loopCondition, F.Block(0, List.of(body, incrementCounter)));
+
+            // Combine the loop counter variable declaration with the while loop
+            return F.at(pos).Block(0, List.of(loopCounter, whileLoop));
         }
         default:
             Assert.error();
